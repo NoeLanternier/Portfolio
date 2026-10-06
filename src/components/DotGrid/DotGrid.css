@@ -1,0 +1,17 @@
+.dot-grid,
+.dot-grid__base,
+.dot-grid__highlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot-grid {
+  overflow: hidden;
+}
+
+.dot-grid__base {
+  background-image: radial-gradient(circle, #a855f7 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity: 0.25;
+}
