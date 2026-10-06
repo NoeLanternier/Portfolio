@@ -84,7 +84,14 @@ export default function DotGrid() {
 
       canvas.width = Math.round(width * pixelRatio)
       canvas.height = Math.round(height * pixelRatio)
-      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+      context.setTransform(
+        width ? canvas.width / width : pixelRatio,
+        0,
+        0,
+        height ? canvas.height / height : pixelRatio,
+        0,
+        0,
+      )
 
       columns = Math.ceil(width / GRID_SPACING)
       rows = Math.ceil(height / GRID_SPACING)

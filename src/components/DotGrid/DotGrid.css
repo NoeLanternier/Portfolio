@@ -6,6 +6,12 @@
   pointer-events: none;
 }
 
+.dot-grid__highlight {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .dot-grid {
   overflow: hidden;
 }
