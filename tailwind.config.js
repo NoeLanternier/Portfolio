@@ -11,11 +11,17 @@ export default {
           50:  '#fbf8ff',
           100: '#f3e8ff',
           200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
           500: '#a855f7',
           600: '#9333ea',
           900: '#581c87',
           950: '#2e0a4e',
         },
+      },
+      backgroundImage: {
+        'brand-gradient': 'linear-gradient(to right, #9333ea, #3b0764)',
+        'aurora-glow': 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(255,255,255,0) 70%)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
