@@ -29,6 +29,23 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Clash Display', 'sans-serif'],
       },
+      keyframes: {
+        breathe: {
+          '0%, 100%': { 
+            opacity: '0.4', 
+            transform: 'scale(0.98)',
+            filter: 'blur(12px)'
+          },
+          '50%': { 
+            opacity: '1', 
+            transform: 'scale(1.06)',
+            filter: 'blur(20px)'
+          },
+        },
+      },
+      animation: {
+        'breathe-slow': 'breathe 3s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
