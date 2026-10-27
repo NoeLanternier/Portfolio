@@ -30,6 +30,10 @@ export default {
         display: ['Clash Display', 'sans-serif'],
       },
       keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         breathe: {
           '0%, 100%': { 
             opacity: '0.4', 
@@ -45,6 +49,7 @@ export default {
       },
       animation: {
         'breathe-slow': 'breathe 3s ease-in-out infinite',
+        'fade-in': 'fade-in 0.4s ease-out',
       },
     },
   },
