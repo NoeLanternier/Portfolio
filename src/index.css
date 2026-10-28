@@ -5,12 +5,25 @@
 @layer base {
     html {
         scroll-behavior: smooth;
+        background-color: #000;
+        color-scheme: dark;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-        @apply bg-white text-slate-900 font-sans selection:bg-brand-200 selection:text-brand-950;
+        @apply bg-black text-slate-200 font-sans selection:bg-brand-500/40 selection:text-white;
         overflow-x: hidden;
+    }
+
+    /* Visible keyboard focus everywhere, invisible for mouse clicks. */
+    :focus-visible {
+        @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-black;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
     }
 }

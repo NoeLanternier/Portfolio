@@ -1,16 +1,32 @@
-# React + Vite
+# Noé Lanternier · Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio: **https://noelanternier.github.io/Portfolio/**
 
-Currently, two official plugins are available:
+Built with React 19, Vite, Tailwind CSS and lucide / Tabler icons. Deployed to GitHub Pages by
+GitHub Actions on every push to `main` (`.github/workflows/deploy.yml`).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run locally
 
-## React Compiler
+```bash
+npm install
+npm run dev      # http://localhost:5173/Portfolio/
+npm run build    # production build in dist/
+npm run lint
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Update the content
 
-## Expanding the ESLint configuration
+| What | Where |
+| --- | --- |
+| Experience, education, skills, languages, about text, links | `src/data/profile.js` |
+| Contact form (Formspree ID) | `CONTACT.formspreeId` in `src/data/profile.js` |
+| Projects | `src/sections/Projects.jsx` and `src/components/projects/` |
+| Tactical Analyzer screenshots | `src/assets/projects/tactique/` (`1-build.png`, `2-analysis.png`…) |
+| Resume | `src/assets/CV_Noe_LANTERNIER.pdf` |
+| Title, description, social preview | `index.html`, `public/og-image.png` |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Contact form
+
+Without a Formspree ID the form opens the visitor's email app with the message pre-filled. To
+receive messages directly: create a free form on [formspree.io](https://formspree.io), copy its
+ID (the end of `https://formspree.io/f/xxxxxxx`) into `CONTACT.formspreeId`, then push.

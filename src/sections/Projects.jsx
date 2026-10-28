@@ -1,4 +1,6 @@
 import TactiqueProject from '../components/projects/TactiqueProject'
+import SectionHeader from '../components/SectionHeader'
+import Reveal from '../components/Reveal'
 
 export default function Projects() {
   return (
@@ -10,16 +12,11 @@ export default function Projects() {
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-6">
         {/* pt-24 on the section keeps the title clear of the fixed navbar. */}
-        <header className="text-center">
-          <h2 className="bg-gradient-to-tr from-brand-400 to-brand-700 bg-clip-text font-display text-4xl font-bold text-transparent md:text-5xl">
-            Projects
-          </h2>
-          <p className="mt-2 font-display text-lg text-brand-300">
-            Things I designed, built and shipped end to end.
-          </p>
-        </header>
+        <SectionHeader title="Projects" subtitle="Things I designed, built and shipped end to end." />
 
-        <TactiqueProject />
+        <Reveal>
+          <TactiqueProject />
+        </Reveal>
       </div>
     </section>
   )
