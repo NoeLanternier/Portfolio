@@ -1,12 +1,25 @@
+import { useRef } from 'react'
 import { ArrowDown } from 'lucide-react'
+import DotField from '../components/DotField'
 import { PROFILE } from '../data/profile'
 import portrait from '../assets/portrait.webp'
 import cvFile from '../assets/CV_Noe_LANTERNIER.pdf'
 
+const touch = typeof window !== 'undefined' && window.matchMedia?.('(hover: none)').matches
+const still =
+  typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+
 export default function Hero() {
+  const sectionRef = useRef(null)
+
   return (
-    <section id="top" className="page pb-20 pt-28 md:pb-28 md:pt-36">
-      <div className="grid items-end gap-12 md:grid-cols-12 md:gap-10">
+    <section id="top" ref={sectionRef} className="relative overflow-hidden">
+      {/* Interactive floor of dots, under the content. */}
+      <div className="absolute inset-x-0 bottom-0 h-[clamp(220px,36vh,380px)]">
+        <DotField targetRef={sectionRef} />
+      </div>
+
+      <div className="page relative grid items-end gap-12 pb-[clamp(170px,28vh,300px)] pt-28 md:grid-cols-12 md:gap-10 md:pt-36">
         <div className="md:col-span-7">
           <p className="text-muted">
             {PROFILE.name} · {PROFILE.location}
@@ -42,6 +55,12 @@ export default function Hero() {
           />
         </figure>
       </div>
+
+      {!still && (
+        <p className="page pointer-events-none absolute inset-x-0 bottom-5 text-right text-xs text-muted">
+          {touch ? 'Tap the dots to make a wave' : 'Move your cursor over the dots · click to make a wave'}
+        </p>
+      )}
     </section>
   )
 }
