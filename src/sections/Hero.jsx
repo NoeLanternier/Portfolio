@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { ArrowDown } from 'lucide-react'
 import DotField from '../components/DotField'
 import { PROFILE } from '../data/profile'
-import avatar from '../assets/avatar.webp'
 import cvFile from '../assets/CV_Noe_LANTERNIER.pdf'
 
 export default function Hero() {
@@ -16,22 +15,11 @@ export default function Hero() {
       </div>
 
       <div className="page relative pb-[clamp(190px,30vh,320px)] pt-28 md:pt-36">
-        <div className="flex items-center gap-4">
-          <img
-            src={avatar}
-            alt="Portrait of Noé Lanternier"
-            width="192"
-            height="192"
-            className="h-14 w-14 rounded-full object-cover md:h-16 md:w-16"
-          />
-          <p className="leading-snug">
-            {PROFILE.name}
-            <br />
-            <span className="text-muted">{PROFILE.location}</span>
-          </p>
-        </div>
+        <p className="text-muted">
+          {PROFILE.name} · {PROFILE.location}
+        </p>
 
-        <h1 className="mt-8 font-serif text-[3.4rem] leading-[0.95] tracking-tight sm:text-7xl lg:text-[6.5rem]">
+        <h1 className="mt-6 font-serif text-[3.4rem] leading-[0.95] tracking-tight sm:text-7xl lg:text-[6.5rem]">
           {PROFILE.title}
           <br />
           <em className="text-accent">{PROFILE.titleSecond}</em>
