@@ -1,60 +1,91 @@
 import { useEffect, useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 const LINKS = [
-  { id: 'projects', label: 'Projects' },
+  { id: 'work', label: 'Work' },
   { id: 'experience', label: 'Experience' },
   { id: 'about', label: 'About' },
   { id: 'contact', label: 'Contact' },
 ]
 
-// Floating navigation: highlights the section currently on screen.
 export default function Navbar() {
-  const [active, setActive] = useState(null)
+  const [scrolled, setScrolled] = useState(() => typeof window !== 'undefined' && window.scrollY > 8)
+  const [active, setActive] = useState('')
+  const [open, setOpen] = useState(false)
 
+  // Hairline under the bar once the page has scrolled.
   useEffect(() => {
-    const sections = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean)
-    if (!sections.length || !('IntersectionObserver' in window)) return
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Highlights the link of the section in the middle of the screen.
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id)
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id)
       },
-      // A section is "active" when it crosses the middle of the screen.
       { rootMargin: '-45% 0px -50% 0px' },
     )
-    sections.forEach((s) => observer.observe(s))
-    // Back on the hero: nothing highlighted.
-    const onScroll = () => {
-      if (window.scrollY < window.innerHeight * 0.5) setActive(null)
+    for (const id of ['top', ...LINKS.map((l) => l.id)]) {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('scroll', onScroll)
-    }
+    return () => observer.disconnect()
   }, [])
 
   return (
-    <nav
-      aria-label="Main"
-      className="fixed left-1/2 top-4 z-50 flex -translate-x-1/2 items-center gap-1 rounded-full border border-white/10 bg-black/70 p-1.5 font-display text-[13px] font-medium text-brand-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)] backdrop-blur-md sm:top-8 sm:gap-2 sm:text-sm md:text-base"
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-paper/90 backdrop-blur transition-colors ${scrolled || open ? 'border-line' : 'border-transparent'}`}
     >
-      <a
-        href="#top"
-        aria-label="Back to top"
-        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-brand-500 to-brand-800 text-xs font-bold text-white sm:h-9 sm:w-9"
-      >
-        NL
-      </a>
-      {LINKS.map((l) => (
-        <a
-          key={l.id}
-          href={`#${l.id}`}
-          aria-current={active === l.id ? 'true' : undefined}
-          className={`rounded-full px-2 py-1.5 transition-colors sm:px-4 ${active === l.id ? 'bg-brand-600/30 text-white' : 'hover:text-white'}`}
-        >
-          {l.label}
+      <nav className="page flex h-16 items-center justify-between" aria-label="Main">
+        <a href="#top" className="font-serif text-2xl leading-none" onClick={() => setOpen(false)}>
+          Noé Lanternier
         </a>
-      ))}
-    </nav>
+
+        <ul className="hidden items-center gap-8 text-sm sm:flex">
+          {LINKS.map(({ id, label }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                aria-current={active === id ? 'true' : undefined}
+                className={`transition-colors hover:text-ink ${active === id ? 'text-ink' : 'text-muted'}`}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <button
+          type="button"
+          className="-mr-2 p-2 sm:hidden"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      {open && (
+        <ul id="mobile-menu" className="page flex flex-col pb-4 sm:hidden">
+          {LINKS.map(({ id, label }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                onClick={() => setOpen(false)}
+                className="block border-t border-line py-3 font-serif text-2xl"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
   )
 }

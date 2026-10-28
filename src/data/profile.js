@@ -1,5 +1,16 @@
 // Everything the portfolio says about you lives here: edit this file to update the site.
 
+export const PROFILE = {
+  name: 'Noé Lanternier',
+  location: 'Strasbourg, France',
+  title: 'Frontend developer',
+  titleSecond: '& UI/UX designer',
+  intro:
+    'I design interfaces in Figma and build them for the web. Right now I’m working on HandVision, a match analysis app for handball coaches, while finishing my master’s at Epitech Strasbourg.',
+  availability:
+    'Open to internships, part-time and full-time roles, in Strasbourg or remote. Freelance projects are welcome too.',
+}
+
 export const CONTACT = {
   email: 'noe.lanternier03@gmail.com',
   linkedin: 'https://www.linkedin.com/in/noe-lanternier',
@@ -10,83 +21,72 @@ export const CONTACT = {
 }
 
 export const ABOUT = [
-  'I’m a computer science student in my final year at Epitech Strasbourg, with a strong background in low-level programming (C, C++) and modern web development.',
-  'After an exchange year at Jönköping School of Engineering in Sweden, I focus on frontend architecture and UI/UX design, from the first Figma mockup to the shipped product, and I’m used to working in fully remote teams across time zones.',
+  'I’m finishing a master’s in software engineering at Epitech Strasbourg, where I learned to program from the ground up in C and C++. I then spent an exchange year in Jönköping, Sweden, following courses from the UI/UX design master’s programme.',
+  'Today I work on both sides of the interface: I draw it in Figma, then I build it with React, Svelte or Angular, depending on the project. Most of my work so far has been done in remote teams spread across several countries.',
 ]
 
 export const EXPERIENCE = [
   {
     company: 'HandVision',
-    role: 'Frontend Developer & UI/UX Designer',
-    period: 'Mar 2025 – Present',
+    role: 'Frontend developer & UI/UX designer',
+    period: 'Mar 2025 – present',
     place: 'Remote',
     points: [
-      'Designed the UI/UX of a handball match analysis software in Figma.',
-      'Built responsive frontends (SCSS, Tailwind) and migrated the architecture from Next.js (TSX) to Svelte.',
-      'Collaborated in a 100% remote team spanning multiple time zones.',
+      'Designed the stats page in Figma and built the app’s pages with the team, for large screens and mobile.',
+      'Took part in moving the frontend from Next.js to Svelte.',
+      'Six people working remotely from Sweden, Ireland, Germany and South Korea.',
     ],
-    tags: ['Figma', 'Svelte', 'Next.js', 'TypeScript', 'Tailwind', 'SCSS'],
+    tags: ['Figma', 'Svelte', 'TypeScript', 'Tailwind CSS', 'SCSS'],
   },
   {
     company: 'MOCLI',
-    role: 'Frontend Intern',
-    period: 'Mar 2025 – Aug 2025',
+    role: 'Frontend intern',
+    period: 'Mar – Aug 2025',
     points: [
-      'Developed and maintained Angular-based web projects.',
-      'Designed and implemented interactive game mechanics.',
-      'Created and customized CSS theme templates for various games.',
-      'Converted the large-screen website into six responsive formats for every device.',
+      'Developed and maintained Angular web projects, including interactive game mechanics.',
+      'Created CSS theme templates for the different games.',
+      'Adapted the large-screen website to six screen formats.',
     ],
-    tags: ['Angular', 'TypeScript', 'CSS', 'Responsive design'],
+    tags: ['Angular', 'TypeScript', 'CSS'],
   },
   {
     company: 'FIRM service – Socomec',
-    role: 'IT Intern',
-    period: 'Aug 2023 – Dec 2023',
+    role: 'IT intern',
+    period: 'Aug – Dec 2023',
     points: [
-      'Redesigned and developed technical documentation in HTML, CSS and JavaScript, focusing on usability.',
-      'Optimized the automated generation of HTML files from XML data with XSLT, making the workflow faster and more reliable.',
+      'Redesigned technical documentation in HTML, CSS and JavaScript to make it easier to use.',
+      'Made the generation of HTML files from XML data (XSLT) faster and more reliable.',
     ],
-    tags: ['HTML', 'CSS', 'JavaScript', 'XML', 'XSLT'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'XSLT'],
   },
 ]
 
 export const EDUCATION = [
   {
-    school: 'Epitech',
-    country: 'France',
-    degree: 'Master’s Degree in Software Engineering',
+    school: 'Epitech Strasbourg',
+    degree: 'Master’s in software engineering',
     period: '2022 – 2027',
   },
   {
-    school: 'Jönköping School of Engineering',
-    country: 'Sweden',
-    degree: 'Master of UX Design · exchange year',
+    school: 'Jönköping School of Engineering, Sweden',
+    degree: 'Exchange year · courses from the UI/UX design master’s programme',
     period: '2025 – 2026',
   },
   {
     school: 'IUT Louis Pasteur',
-    country: 'France',
-    degree: 'Associate Degree in Physical Measurements',
+    degree: 'Associate degree in physical measurements',
     period: '2020 – 2022',
   },
 ]
 
 export const SKILLS = [
-  {
-    group: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'HTML', 'SCSS', 'Tailwind CSS', 'C', 'C++', 'Python'],
-  },
-  {
-    group: 'Frameworks',
-    items: ['React', 'Svelte', 'Angular', 'Vue.js', 'Next.js', 'Node.js', 'Electron'],
-  },
-  { group: 'Tools', items: ['Git', 'GitHub Actions', 'VS Code', 'Figma', 'Trello'] },
-  { group: 'Design', items: ['UI/UX', 'Responsive design', 'Prototyping'] },
+  { group: 'Design', items: ['Figma', 'UI/UX design', 'Responsive design'] },
+  { group: 'Frontend', items: ['TypeScript', 'React', 'Svelte', 'Angular', 'Tailwind CSS', 'SCSS'] },
+  { group: 'Other', items: ['Git', 'C / C++'] },
 ]
 
 export const LANGUAGES = [
-  { name: 'French', level: 'Fluent', value: 1 },
-  { name: 'English', level: 'C1', value: 0.85 },
-  { name: 'German', level: 'A2', value: 0.35 },
+  { name: 'French', level: 'fluent' },
+  { name: 'English', level: 'C1' },
+  { name: 'German', level: 'A2' },
 ]

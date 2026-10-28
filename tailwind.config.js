@@ -1,55 +1,35 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        brand: {
-          50:  '#fbf8ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
-          950: '#2e0a4e',
+        paper: '#FAF9F6', // page background (warm off-white)
+        surface: '#FFFFFF',
+        ink: '#17161C', // main text
+        muted: '#5E5B66', // secondary text (7:1 on paper)
+        line: '#E3E0D8', // hairlines and borders
+        accent: {
+          DEFAULT: '#4B2E83', // deep purple, the only accent colour
+          dark: '#3A2366',
+          soft: '#EEE9F6',
         },
-      },
-      backgroundImage: {
-        'brand-gradient': 'linear-gradient(to right, #9333ea, #3b0764)',
-        'aurora-glow': 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(255,255,255,0) 70%)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Clash Display', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+      },
+      maxWidth: {
+        page: '72rem',
       },
       keyframes: {
         'fade-in': {
-          '0%': { opacity: '0', transform: 'translateY(4px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        breathe: {
-          '0%, 100%': { 
-            opacity: '0.4', 
-            transform: 'scale(0.98)',
-            filter: 'blur(12px)'
-          },
-          '50%': { 
-            opacity: '1', 
-            transform: 'scale(1.06)',
-            filter: 'blur(20px)'
-          },
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       animation: {
-        'breathe-slow': 'breathe 3s ease-in-out infinite',
-        'fade-in': 'fade-in 0.4s ease-out',
+        'fade-in': 'fade-in 0.2s ease-out',
       },
     },
   },

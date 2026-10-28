@@ -3,27 +3,51 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background-color: #faf9f6;
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink selection:bg-accent-soft selection:text-accent-dark;
+  }
+
+  /* Visible keyboard focus everywhere, invisible for mouse clicks. */
+  :focus-visible {
+    @apply rounded-sm outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
     html {
-        scroll-behavior: smooth;
-        background-color: #000;
-        color-scheme: dark;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: auto;
     }
+  }
+}
 
-    body {
-        @apply bg-black text-slate-200 font-sans selection:bg-brand-500/40 selection:text-white;
-        overflow-x: hidden;
-    }
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8;
+  }
 
-    /* Visible keyboard focus everywhere, invisible for mouse clicks. */
-    :focus-visible {
-        @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-black;
-    }
+  /* Text link with a thin underline that thickens on hover. */
+  .link {
+    @apply underline decoration-line decoration-1 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent;
+  }
 
-    @media (prefers-reduced-motion: reduce) {
-        html {
-            scroll-behavior: auto;
-        }
-    }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:bg-accent;
+  }
+
+  .btn-secondary {
+    @apply btn border border-line bg-surface text-ink hover:border-ink;
+  }
 }

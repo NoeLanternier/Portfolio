@@ -1,95 +1,68 @@
-import { GraduationCap } from 'lucide-react'
-import SectionHeader from '../components/SectionHeader'
+import SectionTitle from '../components/SectionTitle'
 import Reveal from '../components/Reveal'
 import { ABOUT, EDUCATION, LANGUAGES, SKILLS } from '../data/profile'
 
-const card =
-  'rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-md md:p-6'
-const cardTitle = 'font-display text-sm font-semibold uppercase tracking-widest text-brand-400'
+function Block({ title, children, className = '' }) {
+  return (
+    <div className={`border-t border-ink pt-5 ${className}`}>
+      <h3 className="font-medium">{title}</h3>
+      <div className="mt-4">{children}</div>
+    </div>
+  )
+}
 
 export default function About() {
   return (
-    <section id="about" className="relative w-full overflow-hidden bg-black px-4 pb-16 pt-24 md:px-8">
-      <div className="pointer-events-none absolute -right-40 top-10 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-purple-500/10 to-brand-800/10 blur-3xl" />
+    <section id="about" aria-labelledby="about-title" className="border-t border-line py-20 md:py-28">
+      <div className="page grid gap-12 md:grid-cols-12 md:gap-10">
+        <div className="md:col-span-4">
+          <SectionTitle id="about-title">About</SectionTitle>
+        </div>
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10">
-        <SectionHeader title="About me" subtitle="Education, skills and languages." />
+        <div className="md:col-span-8">
+          <Reveal className="flex flex-col gap-5 text-xl leading-relaxed md:pt-2">
+            {ABOUT.map((p, i) => (
+              <p key={i} className={i ? 'text-ink/80' : ''}>
+                {p}
+              </p>
+            ))}
+          </Reveal>
 
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-          <div className="flex flex-col gap-5">
-            <Reveal className={card}>
-              <h3 className={cardTitle}>Who I am</h3>
-              <div className="mt-3 flex flex-col gap-3 leading-relaxed text-slate-300">
-                {ABOUT.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={80} className={card}>
-              <h3 className={cardTitle}>Skills</h3>
-              <div className="mt-4 flex flex-col gap-4">
-                {SKILLS.map((g) => (
-                  <div key={g.group} className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
-                    <span className="w-24 shrink-0 pt-1 font-display text-sm text-slate-400">{g.group}</span>
-                    <ul className="flex flex-wrap gap-1.5">
-                      {g.items.map((s) => (
-                        <li
-                          key={s}
-                          className="rounded-md bg-brand-500/10 px-2.5 py-1 text-xs font-medium text-brand-200"
-                        >
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
+          <Reveal className="mt-16 grid gap-12 sm:grid-cols-2 sm:gap-x-10">
+            <Block title="Skills">
+              <dl className="flex flex-col gap-3">
+                {SKILLS.map(({ group, items }) => (
+                  <div key={group}>
+                    <dt className="text-sm text-muted">{group}</dt>
+                    <dd className="mt-0.5">{items.join(', ')}</dd>
                   </div>
                 ))}
-              </div>
-            </Reveal>
-          </div>
+              </dl>
+            </Block>
 
-          <div className="flex flex-col gap-5">
-            <Reveal delay={120} className={card}>
-              <h3 className={cardTitle}>Education</h3>
-              <ol className="mt-4 flex flex-col gap-5">
-                {EDUCATION.map((e) => (
-                  <li key={e.school} className="flex gap-3">
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-300">
-                      <GraduationCap className="h-5 w-5" />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                        <h4 className="font-display text-base font-semibold text-white">
-                          {e.school}
-                          <span className="font-sans text-sm font-normal text-slate-400"> · {e.country}</span>
-                        </h4>
-                        <span className="font-display text-xs text-slate-400">{e.period}</span>
-                      </div>
-                      <p className="text-sm text-brand-200">{e.degree}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </Reveal>
-
-            <Reveal delay={160} className={card}>
-              <h3 className={cardTitle}>Languages</h3>
-              <ul className="mt-4 flex flex-col gap-3">
-                {LANGUAGES.map((l) => (
-                  <li key={l.name} className="flex items-center gap-3 text-sm">
-                    <span className="w-16 shrink-0 text-slate-200">{l.name}</span>
-                    <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-                      <span
-                        className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-purple-300"
-                        style={{ width: `${l.value * 100}%` }}
-                      />
-                    </span>
-                    <span className="w-14 shrink-0 text-right font-display text-xs text-slate-400">{l.level}</span>
+            <Block title="Languages">
+              <ul className="flex flex-col gap-1.5">
+                {LANGUAGES.map(({ name, level }) => (
+                  <li key={name}>
+                    {name} <span className="text-muted">· {level}</span>
                   </li>
                 ))}
               </ul>
-            </Reveal>
-          </div>
+            </Block>
+
+            <Block title="Education" className="sm:col-span-2">
+              <ul className="grid gap-5 lg:grid-cols-3 lg:gap-8">
+                {EDUCATION.map((e) => (
+                  <li key={e.school}>
+                    <p>{e.school}</p>
+                    <p className="text-sm leading-relaxed text-muted">
+                      {e.degree} · <span className="tabular-nums">{e.period}</span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </Block>
+          </Reveal>
         </div>
       </div>
     </section>
