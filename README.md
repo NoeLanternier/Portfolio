@@ -23,7 +23,7 @@ npm run lint
 | Contact form (Formspree ID) | `CONTACT.formspreeId` in `src/data/profile.js` |
 | Projects (texts and images) | `src/components/work/HandVision.jsx`, `src/components/work/TacticalAnalyzer.jsx` |
 | Project images, demo video | `src/assets/projects/handvision/`, `src/assets/projects/tactique/` |
-| Portrait | `src/assets/portrait.webp` |
+| Portrait (avatar) | `src/assets/avatar.webp` |
 | Colours and fonts | `tailwind.config.js`, `index.html` |
 | Resume | `src/assets/CV_Noe_LANTERNIER.pdf` |
 | Title, description, social preview | `index.html`, `public/og-image.png` |
