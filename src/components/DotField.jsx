@@ -10,7 +10,7 @@ import { useEffect, useRef } from 'react'
 const INK = [23, 22, 28]
 const PURPLE = [98, 64, 184]
 const NEAR = 1
-const FAR = 4.2
+const FAR = 3.6
 
 const lerp = (a, b, t) => a + (b - a) * t
 const clamp01 = (v) => Math.max(0, Math.min(1, v))
@@ -107,7 +107,7 @@ export default function DotField({ targetRef, className = '' }) {
         const z = NEAR + j * spacing
         const s = f / z
         const depth = (z - NEAR) / (FAR - NEAR) // 0 near → 1 far
-        const baseAlpha = 0.5 * Math.pow(1 - depth, 1.3)
+        const baseAlpha = 0.55 * Math.pow(1 - depth, 1.8)
         if (baseAlpha < 0.01) continue
         const half = ((W / 2 + 20) * z) / f
         const i0 = Math.ceil(-half / spacing)
