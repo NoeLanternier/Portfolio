@@ -5,12 +5,25 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    /* Anchor jumps land just under the fixed 4rem navbar. */
+    scroll-padding-top: 4rem;
     background-color: #faf9f6;
     color-scheme: light;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Sections start with a hairline and a large top padding: when reached from the menu, hide
+     the hairline under the navbar and keep only part of the padding above the title. */
+  section[id]:not(#top) {
+    scroll-margin-top: -2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    section[id]:not(#top) {
+      scroll-margin-top: -4rem;
+    }
   }
 
   body {
